@@ -22,3 +22,21 @@ variable "credentials_file_path" {
   type = string
   description = "The credentials JSON file used to authenticate with GCP"
 }
+
+variable "db_username" {
+  description = "The Postgres username"
+  type = string
+}
+
+variable "db_password" {
+  description = "The Postgres password"
+  type        = string
+  sensitive   = true
+}
+
+variable "alternative_zone" {
+  description = "The alternative zone where redis server is located"
+  type        = string
+}
+
+

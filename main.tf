@@ -30,4 +30,25 @@ module "google_kubernetes_cluster" {
   authorized_ipv4_cidr_block = "${module.bastion.ip}/32"
 }
 
+module "cloudsql" {
+  source = "./modules/database/cloudsql"
+
+  disk_size     = 10
+  instance_type = "db-f1-micro"
+  password      = var.db_password 
+  user          = var.db_username
+  vpc_name      = module.google_networks.name
+  vpc_link      = module.google_networks.link
+  db_depends_on = module.google_networks.private_vpc_connection
+}
+
+module "redis" {
+  source = "./modules/database/redis"
+
+  redis_name        = "redis-main-server"
+  zone              = var.main_zone
+  alternative_zone  = var.alternative_zone
+  vpc_id            = module.google_networks.vpc_id
+  db_depends_on     = module.google_networks.private_vpc_connection
+}
 
