@@ -13,5 +13,4 @@ resource "google_redis_instance" "cache" {
   display_name      = "Terraform Test Instance"
 
   depends_on       = [var.db_depends_on]
-
 }

@@ -1,4 +1,4 @@
 resource "google_storage_bucket" "bucket" {
-  name     = "test-bucket"
+  name     = var.bucket_name
   location = "US"
 }

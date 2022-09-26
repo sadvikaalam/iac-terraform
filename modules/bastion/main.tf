@@ -73,6 +73,10 @@ resource "google_compute_instance" "bastion" {
     scopes = ["cloud-platform"]
   }
 
+  metadata = {
+    enable-oslogin = "TRUE"
+  }
+
   /* local-exec providers may run before the host has fully initialized.
   However, they are run sequentially in the order they were defined.
   This provider is used to block the subsequent providers until the instance is available. */

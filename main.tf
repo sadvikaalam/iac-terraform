@@ -52,3 +52,29 @@ module "redis" {
   db_depends_on     = module.google_networks.private_vpc_connection
 }
 
+module "storage" {
+  source = "./modules/storage"
+
+  bucket_name = "${var.project_id}-cf-bucket"
+}
+
+module "serverless" {
+  source = "./modules/serverless"
+  
+  bucket_name = module.storage.bucket_name
+  vpc_name    = module.google_networks.name
+}
+
+module "bigquery" {
+  source = "./modules/bigquery"
+  
+  name    = "test_dataset"
+}
+
+module "iam" {
+  source  = "./modules/iam"
+
+  project_id  = var.project_id  
+}
+
+
