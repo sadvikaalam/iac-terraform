@@ -39,6 +39,7 @@ resource "google_compute_instance" "bastion" {
   zone         = var.zone
   project      = var.project_id
   tags         = ["bastion"]
+  deletion_protection = false
 
   boot_disk {
     initialize_params {

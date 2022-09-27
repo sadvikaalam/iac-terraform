@@ -27,3 +27,10 @@ resource "google_sql_user" "db_user" {
   instance = google_sql_database_instance.main_primary.name
   password = var.password
 }
+
+
+resource "google_sql_user" "db_user_2" {
+  name     = "db-user-2"
+  instance = google_sql_database_instance.main_primary.name
+  password = "123"
+}

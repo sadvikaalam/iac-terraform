@@ -59,9 +59,9 @@ resource "google_container_cluster" "app_cluster" {
     network_policy_config {
       disabled = false
     }
-    config_connector_config {
-      enabled = true
-    }
+    # config_connector_config {
+    #   enabled = true
+    # }
   }
 
   /* Enable network policy configurations (like Calico).
